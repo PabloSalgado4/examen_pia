@@ -5,12 +5,20 @@ def calcular_factorial(numero):
     # (¡Ojo! No en 0, porque si multiplicas por 0 todo se vuelve 0)
     resultado = 1
     
-    # Hacemos un bucle que vaya desde el 1 hasta el número que nos han pedido.
-    # Ponemos 'numero + 1' porque el range en Python SIEMPRE para un número antes.
-    for i in range(1, numero + 1):
+    # Como no usamos 'range', creamos nuestro propio contador.
+    # Empezamos a multiplicar desde el 1.
+    i = 1
+    
+    # Hacemos un bucle 'while' que funcione MIENTRAS nuestro contador 'i' 
+    # sea menor o igual al número que nos han pedido.
+    while i <= numero:
         
-        # Vamos multiplicando lo que ya teníamos por el nuevo número
+        # Vamos multiplicando lo que ya teníamos por el número actual de 'i'
         resultado = resultado * i
+        
+        # ¡CRÍTICO! Le sumamos 1 a 'i' a mano para que el bucle avance al siguiente número.
+        # Si no ponemos esto, se quedará multiplicando por 1 para siempre.
+        i = i + 1
         
     # Devolvemos el cálculo final
     return resultado

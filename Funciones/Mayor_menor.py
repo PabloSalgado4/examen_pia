@@ -1,36 +1,51 @@
-# Definimos la función y le pasamos una lista de números inventada
+# 1. NUESTRA FUNCIÓN CASERA PARA CONTAR (Reemplaza a len)
+def contar_elementos(lista):
+    total = 0
+    for elemento in lista:
+        total = total + 1
+    return total
+
+# 2. NUESTRA FUNCIÓN PARA ORDENAR DE MAYOR A MENOR (Sin usar range)
 def ordenar_mayor_a_menor(numeros):
     
-    # Primero sacamos cuántos números hay en la lista
-    cantidad = len(numeros)
+    # Usamos nuestra propia función para saber cuántos números hay
+    cantidad = contar_elementos(numeros)
     
-    # Necesitamos un bucle que dé tantas vueltas como números haya
-    for i in range(cantidad):
+    # Creamos el contador para el primer bucle
+    i = 0
+    
+    # Bucle principal (mientras 'i' sea menor que la cantidad total)
+    while i < cantidad:
         
-        # Dentro, necesitamos otro bucle que vaya comparando de dos en dos.
-        # Le restamos 'i' y 1 para no pasarnos del límite de la lista
-        # y no volver a mirar los que ya están ordenados al final.
-        for j in range(0, cantidad - i - 1):
+        # Creamos el contador para el segundo bucle
+        j = 0
+        
+        # Bucle secundario para ir comparando de dos en dos
+        # (cantidad - i - 1) evita que nos salgamos del límite de la lista
+        while j < (cantidad - i - 1):
             
-            # Aquí viene la magia: Si el número actual es MENOR que el siguiente...
+            # Si el número actual es MENOR que el siguiente, los intercambiamos
             if numeros[j] < numeros[j + 1]:
-                
-                # ...los intercambiamos de posición usando una variable temporal
-                # para no perder el dato mientras hacemos el cambio.
                 temporal = numeros[j]
                 numeros[j] = numeros[j + 1]
                 numeros[j + 1] = temporal
                 
-    # Cuando terminan los bucles, la lista ya está ordenada y la devolvemos
+            # ¡CRÍTICO! Sumamos 1 a 'j' a mano para que el bucle avance
+            j = j + 1
+            
+        # ¡CRÍTICO! Sumamos 1 a 'i' a mano antes de la siguiente vuelta
+        i = i + 1
+        
+    # Devolvemos la lista ya ordenada
     return numeros
 
 # --- ZONA DE PRUEBAS ---
 
-# Creamos una lista desordenada para probar si funciona
+# Nuestra lista desordenada
 mis_numeros = [4, 1, 9, 3, 7, 2]
 
-# Llamamos a nuestra función, le pasamos la lista y guardamos el resultado
+# Llamamos a la función principal
 resultado = ordenar_mayor_a_menor(mis_numeros)
 
-# Imprimimos el resultado para comprobar que va del más grande al más pequeño
-print("Lista ordenada:", resultado)
+# Imprimimos el resultado final
+print("Lista ordenada nivel experto (sin len ni range):", resultado)
